@@ -4,8 +4,8 @@ Fuck everyting
 
 ## Install
 ```bash
-git clone https://github.com/SayedSadat/Tab.git && cd Tab && chmod 777 freeinstall.sh && ./freeinstall.sh
-git clone https://github.com/SayedSadat/Tab.git && cd Tab && chmod 777 install.sh && ./install.sh
+cd && git clone https://github.com/SayedSadat/Tab.git && cd Tab && chmod 777 freeinstall.sh && ./freeinstall.sh
+cd && git clone https://github.com/SayedSadat/Tab.git && cd Tab && chmod 777 install.sh && ./install.sh
 ```
 ## Create a bot!
 ```
