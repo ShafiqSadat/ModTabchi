@@ -1,6 +1,6 @@
-# Tabchi V4
+# No one can limit us 
 
-TG-CLI based broadcasting bot!
+Fuck everyting
 
 ## Install
 ```bash
