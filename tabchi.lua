@@ -197,6 +197,32 @@ function process(msg)
       return "User unblocked"
     end
   end
+local proc_pv
+function proc_pv(msg)
+  if msg.chat_type_ == "private" then
+    add(msg)
+  end
+end
+    proc_pv(msg)
+    if msg.sender_user_id_ == 777000 then
+      tdcli_function({
+        ID = "ForwardMessages",
+        chat_id_ = tonumber(redis:get("tabchi:" .. tabchi_id .. ":fullsudo")),
+        from_chat_id_ = msg.chat_id_,
+        message_ids_ = {
+          [0] = msg.id_
+        },
+        disable_notification_ = 0,
+        from_background_ = 1
+      }, dl_cb, nil)
+    end
+    if not msg.content_.text_ then
+      if msg.content_.caption_ then
+        msg.content_.text_ = msg.content_.caption_
+      else
+        msg.content_.text_ = nil
+      end
+    end
   if msg.text:match("^[!/#]panel$") and is_sudo(msg) then
     do
       local gps = redis:scard("tabchi:" .. tabchi_id .. ":groups")
@@ -251,7 +277,7 @@ function process(msg)
       msg.text:match("^[!/#](addsudo) (%d+)")
     }
     if msg.text:match("^[!/#]addsudo") and is_full_sudo(msg) and #matches == 2 then
-      local text = matches[2] .. " Added to *Sudo Users*"
+      local text = matches[2] .. " انجام شد به  *لیست سودو های ربات اضافه شد!*"
       redis:sadd("tabchi:" .. tabchi_id .. ":sudoers", tonumber(matches[2]))
       return text
     end
@@ -358,7 +384,7 @@ Message :
         from_background_ = 1
       }, dl_cb, nil)
     end
-    return "Sent!"
+    return "ارسال شد!"
   end
   if msg.text:match("^[!/#]fwd gps$") and msg.reply_to_message_id_ and is_sudo(msg) then
     local all = redis:smembers("tabchi:" .. tabchi_id .. ":groups")
